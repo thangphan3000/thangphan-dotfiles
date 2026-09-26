@@ -4,7 +4,6 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 LINKS=(
-  "claude/AGENTS.md:${HOME}/.claude/AGENTS.md"
   "claude/CLAUDE.md:${HOME}/.claude/CLAUDE.md"
   "claude/settings.json:${HOME}/.claude/settings.json"
   "claude/statusline.sh:${HOME}/.claude/statusline.sh"
