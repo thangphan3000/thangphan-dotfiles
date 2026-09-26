@@ -7,6 +7,7 @@ LINKS=(
   "claude/AGENTS.md:${HOME}/.claude/AGENTS.md"
   "claude/CLAUDE.md:${HOME}/.claude/CLAUDE.md"
   "claude/settings.json:${HOME}/.claude/settings.json"
+  "claude/statusline.sh:${HOME}/.claude/statusline.sh"
   "claude/skills:${HOME}/.claude/skills"
   "tmux:${HOME}/.config/tmux"
   "tmux/tmux.conf:${HOME}/.tmux.conf"
