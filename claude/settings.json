@@ -1,6 +1,4 @@
 {
-  "model": "claude-sonnet-4-6",
-  "bashEditDiffEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
