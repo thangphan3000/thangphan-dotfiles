@@ -1,0 +1,31 @@
+{
+  "set_strict_mode": {
+    "prefix": [
+      "strict"
+    ],
+    "body": [
+      "set -euo pipefail"
+    ],
+    "description": "Add strict for exit on error, undefined vars, pipe fails"
+  },
+  "bash error handler": {
+    "prefix": ["error-handler", "trap-err"],
+    "body": [
+      "error_handler() {",
+      "  local exit_code=\\$?",
+      "  local line_number=\\$1",
+      "  local command=\"\\$BASH_COMMAND\"",
+      "",
+      "  echo \"Error occurred:\" >&2",
+      "  echo \"  Exit code: \\$exit_code\" >&2",
+      "  echo \"  Line: \\$line_number\" >&2",
+      "  echo \"  Command: \\$command\" >&2",
+      "",
+      "  exit \\$exit_code",
+      "}",
+      "",
+      "trap 'error_handler \\$LINENO' ERR"
+    ],
+    "description": "Add error handling"
+  }
+}

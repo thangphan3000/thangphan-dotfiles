@@ -1,6 +1,6 @@
 # thangphan-dotfiles
 
-Personal dotfiles. Currently ships Claude Code configuration and a bootstrap script that symlinks it into `~/.claude/`.
+Personal dotfiles. Ships Claude Code, tmux, and Neovim configuration plus a bootstrap script that symlinks each one into the right XDG location.
 
 ## Contents
 
@@ -10,11 +10,10 @@ Personal dotfiles. Currently ships Claude Code configuration and a bootstrap scr
 
 ## What's inside
 
-- `bootstrap.sh` - installer that symlinks the tracked files into `~/.claude/`.
-- `claude/AGENTS.md` - global agent instructions (writing conventions, README rules).
-- `claude/CLAUDE.md` - top-level Claude Code project file; imports `AGENTS.md`.
-- `claude/settings.json` - Claude Code settings (model, status line, theme).
-- `claude/skills/` - user skills, including vendored anthropic-skills under `synced/`.
+- `bootstrap.sh` - installer that symlinks every tracked file into its destination.
+- `claude/` - Claude Code config: `AGENTS.md`, `CLAUDE.md`, `settings.json`, and `skills/` (including vendored anthropic-skills under `synced/`).
+- `tmux/` - `tmux.conf` and `themes/` (dank, nord, catppuccin latte/mocha).
+- `nvim/` - Neovim config (`init.lua`, `lua/`, `snippets/`, `lazy-lock.json`).
 
 ## Quick start
 
@@ -28,4 +27,17 @@ The script is idempotent: rerun it any time to repair or refresh the links.
 
 ## How it works
 
-`bootstrap.sh` walks a fixed list of items (`AGENTS.md`, `CLAUDE.md`, `settings.json`, `skills`) and, for each one, points `~/.claude/<item>` at `claude/<item>` in this repo. Anything already at the target path (regular file, directory, or wrong symlink) is removed before the new symlink is created, so no backup copy is kept.
+`bootstrap.sh` walks a `source:destination` mapping and, for each entry, symlinks the target path to the tracked file or folder in this repo:
+
+| Source in repo | Destination |
+| --- | --- |
+| `claude/AGENTS.md` | `~/.claude/AGENTS.md` |
+| `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
+| `claude/settings.json` | `~/.claude/settings.json` |
+| `claude/skills` | `~/.claude/skills` |
+| `tmux` | `~/.config/tmux` |
+| `nvim` | `~/.config/nvim` |
+
+Anything already at a destination (regular file, directory, or wrong symlink) is removed before the new symlink is created, so no backup copy is kept. Parent directories are created as needed.
+
+If a legacy `~/.tmux.conf` still exists, tmux will read that instead of the XDG config; remove it so `~/.config/tmux/tmux.conf` wins.

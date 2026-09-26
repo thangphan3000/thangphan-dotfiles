@@ -1,0 +1,12 @@
+{
+  "set_strict_mode": {
+    "prefix": [
+      "code"
+    ],
+    "body": [
+      "```$1",
+      "```"
+    ],
+    "description": "Add code block"
+  }
+}

@@ -2,28 +2,34 @@
 set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SRC_DIR="${DOTFILES_DIR}/claude"
-CLAUDE_DIR="${HOME}/.claude"
 
-ITEMS=(AGENTS.md CLAUDE.md settings.json skills)
+LINKS=(
+  "claude/AGENTS.md:${HOME}/.claude/AGENTS.md"
+  "claude/CLAUDE.md:${HOME}/.claude/CLAUDE.md"
+  "claude/settings.json:${HOME}/.claude/settings.json"
+  "claude/skills:${HOME}/.claude/skills"
+  "tmux:${HOME}/.config/tmux"
+  "tmux/tmux.conf:${HOME}/.tmux.conf"
+  "nvim:${HOME}/.config/nvim"
+)
 
-mkdir -p "${CLAUDE_DIR}"
-
-link_item() {
-  local name="$1"
-  local src="${SRC_DIR}/${name}"
-  local dst="${CLAUDE_DIR}/${name}"
+link_one() {
+  local rel_src="$1"
+  local dst="$2"
+  local src="${DOTFILES_DIR}/${rel_src}"
 
   if [[ ! -e "${src}" ]]; then
-    echo "skip ${name}: source missing at ${src}"
+    echo "skip ${rel_src}: source missing at ${src}"
     return
   fi
+
+  mkdir -p "$(dirname "${dst}")"
 
   if [[ -L "${dst}" ]]; then
     local current
     current="$(readlink "${dst}")"
     if [[ "${current}" == "${src}" ]]; then
-      echo "ok   ${name}: already linked"
+      echo "ok   ${dst} -> ${src}"
       return
     fi
     rm "${dst}"
@@ -32,11 +38,13 @@ link_item() {
   fi
 
   ln -s "${src}" "${dst}"
-  echo "link ${name} -> ${src}"
+  echo "link ${dst} -> ${src}"
 }
 
-for item in "${ITEMS[@]}"; do
-  link_item "${item}"
+for entry in "${LINKS[@]}"; do
+  rel_src="${entry%%:*}"
+  dst="${entry#*:}"
+  link_one "${rel_src}" "${dst}"
 done
 
 echo "done."
