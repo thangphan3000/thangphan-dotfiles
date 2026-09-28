@@ -1,0 +1,25 @@
+[user]
+  name = Thang Phan
+  email = thangjenny2002@gmail.com
+
+[core]
+  editor       = nvim
+  excludesfile = /Users/thangphan/.gitignore
+  hooksPath    = /Users/thangphan/.git-hooks
+
+[init]
+	defaultBranch = main
+
+[help]
+	autocorrect = 1
+
+[alias]
+  br = branch
+  s = status
+  st = status
+  d = diff
+  ps = !git push origin $(git rev-parse --abbrev-ref HEAD)
+  ci = commit
+  co = checkout
+  su = submodule update --init --recursive
+  logs = log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative

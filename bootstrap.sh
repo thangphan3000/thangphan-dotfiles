@@ -10,6 +10,8 @@ LINKS=(
   "claude/skills:${HOME}/.claude/skills"
   "tmux:${HOME}/.config/tmux"
   "tmux/tmux.conf:${HOME}/.tmux.conf"
+  ".gitconfig:${HOME}/.gitconfig"
+  ".git-hooks:${HOME}/.git-hooks"
   "nvim:${HOME}/.config/nvim"
 )
 
