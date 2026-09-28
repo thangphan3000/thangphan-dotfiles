@@ -52,14 +52,12 @@ return {
     end,
   },
   {
-    'neanias/everforest-nvim',
-    -- name = "everforest",
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000,
     config = function()
-      require('everforest').setup {
-        transparent_background_level = 2,
-      }
-      vim.cmd.colorscheme 'everforest'
+      require('catppuccin').setup {}
+      vim.cmd.colorscheme 'catppuccin-nvim'
     end,
   },
   {
