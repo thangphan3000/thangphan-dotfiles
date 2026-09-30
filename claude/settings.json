@@ -23,7 +23,6 @@
       "allowRead": [
         ".",
         "~/.gitconfig",
-        "~/.npmrc",
         "~/thangphan-dotfiles",
         "~/projects",
         "~/.local/share/mise/"
