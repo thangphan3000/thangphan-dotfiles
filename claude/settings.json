@@ -13,6 +13,9 @@
     "enabled": true,
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
+    "network": {
+      "allowLocalBinding": true
+    },
     "filesystem": {
       "denyRead": [
         "~/"
@@ -20,7 +23,10 @@
       "allowRead": [
         ".",
         "~/.gitconfig",
-        "~/thangphan-dotfiles"
+        "~/.npmrc",
+        "~/thangphan-dotfiles",
+        "~/projects",
+        "~/.local/share/mise/"
       ]
     },
     "credentials": {
