@@ -175,21 +175,19 @@ return {
     },
   },
   {
-    'ibhagwan/fzf-lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    cmd = 'FzfLua',
-    config = function()
-      require('fzf-lua').setup { 'ivy' }
-    end,
-    keys = {
-      { '<C-b>', '<cmd>FzfLua buffers<cr>', desc = 'Find recent buffers' },
-      { '<C-p>', '<cmd>FzfLua files<cr>', desc = 'Find files in dir' },
-      { '<C-s>', '<cmd>FzfLua grep_cword<cr>', desc = 'Searches for the word under the cursor' },
-      { '<C-g>', '<cmd>FzfLua live_grep<cr>', desc = 'Grep through the project dir' },
-      { '<leader>gd', '<cmd>FzfLua git_diff<cr>', desc = 'Git Diff' },
-      { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
-      { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git commits' },
+    'nvim-telescope/telescope.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      -- optional but recommended
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
+    config = function()
+      local builtin = require 'telescope.builtin'
+      vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
+      vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live grep' })
+      vim.keymap.set('n', '<C-s>', builtin.grep_string, { desc = 'Telescope live grep' })
+    end,
   },
   {
     'saghen/blink.cmp',

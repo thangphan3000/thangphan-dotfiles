@@ -12,42 +12,61 @@ return {
     end,
   },
   {
-    'beauwilliams/statusline.lua',
-    dependencies = {
-      'nvim-lua/lsp-status.nvim',
-    },
+    'nvim-lualine/lualine.nvim',
     config = function()
-      local lsp_icons = require 'config.lsp_icons'
-
-      local ok, lsp_section = pcall(require, 'sections._lsp')
-      if ok then
-        lsp_section.diagnostics = function()
-          local diagnostics = ''
-          local res = { 0, 0, 0, 0 }
-
-          for _, diagnostic in ipairs(vim.diagnostic.get(0)) do
-            res[diagnostic.severity] = res[diagnostic.severity] + 1
-          end
-
-          local e = res[vim.diagnostic.severity.ERROR]
-          local w = res[vim.diagnostic.severity.WARN]
-          local i = res[vim.diagnostic.severity.INFO]
-          local h = res[vim.diagnostic.severity.HINT]
-
-          diagnostics = e ~= 0 and diagnostics .. lsp_icons.diagnostics.error .. e .. ' ' or diagnostics
-          diagnostics = w ~= 0 and diagnostics .. lsp_icons.diagnostics.warn .. w .. ' ' or diagnostics
-          diagnostics = i ~= 0 and diagnostics .. lsp_icons.diagnostics.info .. i .. ' ' or diagnostics
-          diagnostics = h ~= 0 and diagnostics .. lsp_icons.diagnostics.hint .. h .. ' ' or diagnostics
-
-          return diagnostics
-        end
-      end
-
-      require('statusline').setup {
-        match_colorscheme = true,
-        tabline = false,
-        lsp_diagnostics = true,
-        ale_diagnostics = false,
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'auto',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+              'WinEnter',
+              'BufEnter',
+              'BufWritePost',
+              'SessionLoadPost',
+              'FileChangedShellPost',
+              'VimResized',
+              'Filetype',
+              'CursorMoved',
+              'CursorMovedI',
+              'ModeChanged',
+            },
+          },
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {},
       }
     end,
   },
