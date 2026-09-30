@@ -247,30 +247,23 @@ return {
     },
     opts_extend = { 'sources.default' },
   },
-  {
-    'claudecode-tmux',
-    dir = vim.fn.stdpath 'config',
-    name = 'claudecode-tmux',
-    lazy = true,
-    config = function() end,
-  },
-  {
-    'claude-tmux',
-    dir = vim.fn.stdpath 'config',
-    name = 'claude-tmux',
-    lazy = true,
-    keys = {
-      {
-        '<C-S-c>',
-        function()
-          require('claudecode_tmux').send_selection()
-        end,
-        mode = 'v',
-        desc = 'Send selection to Claude code',
-      },
-    },
-    config = function() end,
-  },
+  -- {
+  --   'claude-tmux',
+  --   dir = vim.fn.stdpath 'config',
+  --   name = 'claude-tmux',
+  --   lazy = true,
+  --   keys = {
+  --     {
+  --       '<C-S-c>',
+  --       function()
+  --         require('claudecode_tmux').send_selection()
+  --       end,
+  --       mode = 'v',
+  --       desc = 'Send selection to Claude code',
+  --     },
+  --   },
+  --   config = function() end,
+  -- },
   {
     'esmuellert/codediff.nvim',
     cmd = 'CodeDiff',
