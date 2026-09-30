@@ -22,7 +22,6 @@
       ],
       "allowRead": [
         ".",
-        "~/.gitconfig",
         "~/thangphan-dotfiles",
         "~/projects",
         "~/.local/share/mise/"
