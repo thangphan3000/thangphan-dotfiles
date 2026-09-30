@@ -1,6 +1,7 @@
 ---
 name: git-commit
 description: Create Git commits using the Conventional Commits format after inspecting the working tree. Use when the user asks to commit, prepare a commit message, or follow a git commit convention.
+disable-model-invocation: true
 ---
 
 # Git Conventional Commit
