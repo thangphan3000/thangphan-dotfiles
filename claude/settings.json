@@ -73,6 +73,15 @@
             "statusMessage": "Scanning staged changes for secrets..."
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/thangphan-dotfiles/claude/hooks/enforce-pnpm.sh"
+          }
+        ]
       }
     ]
   }
