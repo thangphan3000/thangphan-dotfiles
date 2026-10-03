@@ -5,6 +5,7 @@
       "Read(./.env)"
     ]
   },
+  "model": "claude-opus-4-6",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -24,7 +25,8 @@
         ".",
         "~/thangphan-dotfiles",
         "~/projects",
-        "~/.local/share/mise/"
+        "~/.local/share/mise/",
+        "~/.gitconfig"
       ]
     },
     "credentials": {
@@ -53,5 +55,25 @@
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
-  "model": "claude-opus-4-6"
+  "modelSettings": {
+    "claude-opus-4-7": {
+      "effortLevel": "high"
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git commit *)",
+            "command": "~/thangphan-dotfiles/claude/hooks/git-secret-guardrail.sh",
+            "timeout": 10,
+            "statusMessage": "Scanning staged changes for secrets..."
+          }
+        ]
+      }
+    ]
+  }
 }
