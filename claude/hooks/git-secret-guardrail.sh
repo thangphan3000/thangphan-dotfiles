@@ -2,6 +2,21 @@
 # PreToolUse hook: scan staged git diff for likely secrets before `git commit`.
 # Reads Claude Code hook JSON on stdin; emits a block decision as JSON on stdout
 # when matches are found, otherwise exits 0 silently.
+#
+# Patterns blocked (added lines in the staged diff; `--amend` falls back to HEAD):
+#   - AWS access key id        AKIA + 16 upper/digits        (e.g. AKIAIOSFODNN7EXAMPLE)
+#   - AWS temp access key      ASIA + 16 upper/digits        (STS session creds)
+#   - AWS secret access key    aws_secret_access_key = <40 base64url>  (case-insensitive)
+#   - GitHub token             ghp_/gho_/ghu_/ghs_/ghr_ + 36+ chars
+#   - Google API key           AIza + 35 url-safe chars
+#   - Slack token              xoxb-/xoxa-/xoxp-/xoxr-/xoxs- + 10+ chars
+#   - OpenAI / Anthropic key   sk-... or sk-ant-... + 20+ chars
+#   - Private key block        -----BEGIN ... PRIVATE KEY-----
+#   - Generic secret assignment  secret/password/passwd/api_key/token = "<16+ chars>"
+#                                (case-insensitive; quoted values only)
+#
+# To add a pattern: append a name to pattern_names, its regex to pattern_regexes,
+# and 'i' or '' to pattern_flags. All three arrays must stay the same length.
 
 set -u
 
