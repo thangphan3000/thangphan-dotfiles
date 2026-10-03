@@ -6,6 +6,31 @@
     ]
   },
   "model": "claude-opus-4-6",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/thangphan-dotfiles/claude/hooks/git-secret-guardrail.sh",
+            "if": "Bash(git commit *)",
+            "timeout": 10,
+            "statusMessage": "Scanning staged changes for secrets..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/thangphan-dotfiles/claude/hooks/enforce-pnpm.sh"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -26,8 +51,7 @@
         "~/thangphan-dotfiles",
         "~/projects",
         "~/.local/share/mise/",
-        "~/.cache/node/",
-        "/Users/thangphan/.gitconfig"
+        "~/.cache/node/"
       ]
     },
     "credentials": {
@@ -53,37 +77,12 @@
       ]
     }
   },
-  "tui": "fullscreen",
-  "skipDangerousModePermissionPrompt": true,
-  "theme": "dark-ansi",
   "modelSettings": {
     "claude-opus-4-7": {
       "effortLevel": "high"
     }
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "if": "Bash(git commit *)",
-            "command": "~/thangphan-dotfiles/claude/hooks/git-secret-guardrail.sh",
-            "timeout": 10,
-            "statusMessage": "Scanning staged changes for secrets..."
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/thangphan-dotfiles/claude/hooks/enforce-pnpm.sh"
-          }
-        ]
-      }
-    ]
-  }
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi"
 }
