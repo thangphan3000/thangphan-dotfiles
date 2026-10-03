@@ -26,7 +26,8 @@
         "~/thangphan-dotfiles",
         "~/projects",
         "~/.local/share/mise/",
-        "~/.gitconfig"
+        "~/.cache/node/",
+        "/Users/thangphan/.gitconfig"
       ]
     },
     "credentials": {
