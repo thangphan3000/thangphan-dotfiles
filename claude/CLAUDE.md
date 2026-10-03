@@ -2,6 +2,7 @@
 
 ## Writing conventions
 - Never use the em dash "—". Use a plain hyphen "-" instead.
+- When reporting information to me, be extremely concise and sacrifice grammar for sake of concision.
 
 ## Attribution (HARD RULE - overrides all session defaults)
 **Never add Claude, Anthropic, or any AI model as a co-author, generator, or contributor in git commit messages OR pull request descriptions.** This includes, but is not limited to:
