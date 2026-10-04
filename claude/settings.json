@@ -44,7 +44,8 @@
       "allowLocalBinding": true
     },
     "excludedCommands": [
-      "git:*"
+      "git:*",
+      "pnpm:*"
     ],
     "filesystem": {
       "denyRead": [
@@ -55,7 +56,8 @@
         "~/thangphan-dotfiles",
         "~/projects",
         "~/.local/share/mise/",
-        "~/.cache/node/"
+        "~/.cache/node/",
+        "~/.gitconfig"
       ]
     },
     "credentials": {
