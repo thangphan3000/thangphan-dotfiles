@@ -78,7 +78,7 @@ return {
       require('catppuccin').setup {
         transparent_background = false,
       }
-      vim.cmd.colorscheme 'catppuccin-macchiato'
+      vim.cmd.colorscheme 'catppuccin-latte'
     end,
   },
   {

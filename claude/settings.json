@@ -43,10 +43,6 @@
     "network": {
       "allowLocalBinding": true
     },
-    "excludedCommands": [
-      "git:*",
-      "pnpm:*"
-    ],
     "filesystem": {
       "denyRead": [
         "~/"
@@ -81,7 +77,11 @@
           "mode": "deny"
         }
       ]
-    }
+    },
+    "excludedCommands": [
+      "git:*",
+      "pnpm:*"
+    ]
   },
   "modelSettings": {
     "claude-opus-4-7": {
@@ -90,5 +90,5 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark-ansi"
+  "theme": "light-ansi"
 }
