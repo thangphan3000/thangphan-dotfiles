@@ -4,10 +4,6 @@
     "deny": [
       "Read(./.env)",
       "Read(./*.db)"
-    ],
-    "allow": [
-      "Bash(git push:*)",
-      "Bash(git commit --amend:*)"
     ]
   },
   "model": "claude-opus-4-6",
@@ -47,6 +43,9 @@
     "network": {
       "allowLocalBinding": true
     },
+    "excludedCommands": [
+      "git:*"
+    ],
     "filesystem": {
       "denyRead": [
         "~/"
