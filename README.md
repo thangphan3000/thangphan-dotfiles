@@ -11,7 +11,7 @@ Personal dotfiles. Ships Claude Code, tmux, and Neovim configuration plus a boot
 ## What's inside
 
 - `bootstrap.sh` - installer that symlinks every tracked file into its destination.
-- `claude/` - Claude Code config: `AGENTS.md`, `CLAUDE.md`, `settings.json`, and `skills/` (including vendored anthropic-skills under `synced/`).
+- `claude/` - Claude Code config: `AGENTS.md`, `CLAUDE.md`, `settings.json`, `skills/` and `agents/` (custom sub-agents).
 - `tmux/` - `tmux.conf` and `themes/` (dank, nord, catppuccin latte/mocha).
 - `nvim/` - Neovim config (`init.lua`, `lua/`, `snippets/`, `lazy-lock.json`).
 
@@ -35,6 +35,7 @@ The script is idempotent: rerun it any time to repair or refresh the links.
 | `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 | `claude/settings.json` | `~/.claude/settings.json` |
 | `claude/skills` | `~/.claude/skills` |
+| `claude/agents` | `~/.claude/agents` |
 | `tmux` | `~/.config/tmux` |
 | `nvim` | `~/.config/nvim` |
 
