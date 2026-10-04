@@ -8,6 +8,7 @@ LINKS=(
   "claude/settings.json:${HOME}/.claude/settings.json"
   "claude/statusline.sh:${HOME}/.claude/statusline.sh"
   "claude/skills:${HOME}/.claude/skills"
+  "claude/agents:${HOME}/.claude/agents"
   "tmux:${HOME}/.config/tmux"
   "tmux/tmux.conf:${HOME}/.tmux.conf"
   ".gitconfig:${HOME}/.gitconfig"
