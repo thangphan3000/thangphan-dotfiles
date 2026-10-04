@@ -1,12 +1,12 @@
 ---
-name: git-commit
-description: Create Git commits using the Conventional Commits format after inspecting the working tree. Use when the user asks to commit, prepare a commit message, or follow a git commit convention.
+name: commit-and-push
+description: Create Git commits using the Conventional Commits format after inspecting the working tree, then push to the remote. Use when the user asks to commit and push, prepare a commit message, or follow a git commit convention.
 disable-model-invocation: true
 ---
 
-# Git Conventional Commit
+# Git Commit And Push
 
-Use this skill when the user wants a commit or commit message that follows Conventional Commits.
+Use this skill when the user wants a commit that follows Conventional Commits and then pushes to the remote.
 
 ## Commit Format
 
@@ -99,6 +99,22 @@ git commit -m "<type>(<scope>): <summary>" -m "<body>" -m "<footer>"
 
 When the active session instructs you to append attribution lines (for example a Claude Code attribution reminder), include them in the commit message via an additional `-m` argument or a HEREDOC, keeping them below the body and footer.
 
+## Push
+
+After the commit succeeds, push to the remote tracked by the current branch:
+
+```bash
+git push
+```
+
+If the branch has no upstream yet, set it on the first push:
+
+```bash
+git push -u origin <branch>
+```
+
+Never pass `--force`, `--force-with-lease`, or `--no-verify` unless the user explicitly asks. If the push is rejected (non-fast-forward, hook failure, protected branch), stop and report the exact error - do not retry with destructive flags. The user has pre-authorized ordinary `git push` for this skill.
+
 ## Choosing The Message
 
 Choose the narrowest type that matches the staged diff:
@@ -134,12 +150,13 @@ chore(config): require JWT private key environment variable
 
 ## Final Response
 
-After committing, report:
+After committing and pushing, report:
 
 ```text
 commit hash
 commit subject
 files committed
+push result (branch -> remote, or "not pushed" with reason)
 ```
 
-If no commit was created, explain exactly why and what remains.
+If no commit was created, or the commit succeeded but the push failed, explain exactly why and what remains.

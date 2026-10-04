@@ -76,52 +76,19 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup {
-        transparent_background = true,
+        transparent_background = false,
       }
-      vim.cmd.colorscheme 'catppuccin-nvim'
+      vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
-    dependencies = {
-      'windwp/nvim-ts-autotag',
-    },
+    lazy = false,
+    branch = 'main',
     build = ':TSUpdate',
     config = function()
-      require('nvim-ts-autotag').setup {}
-      require('nvim-treesitter.install').prefer_git = true
-      local function first_node(node)
-        return type(node) == 'table' and node[1] or node
-      end
-
-      local function parser_from_markdown_info_string(lang)
-        return vim.filetype.match { filename = 'a.' .. lang }
-          or ({ ex = 'elixir', pl = 'perl', sh = 'bash', ts = 'typescript', uxn = 'uxntal' })[lang]
-          or lang
-      end
-
-      vim.treesitter.query.add_directive('set-lang-from-info-string!', function(match, _, bufnr, pred, metadata)
-        local node = first_node(match[pred[2]])
-        if node then
-          local lang = vim.treesitter.get_node_text(node, bufnr):lower()
-          metadata['injection.language'] = parser_from_markdown_info_string(lang)
-        end
-      end, { force = true, all = false })
-      vim.treesitter.query.add_directive('set-lang-from-mimetype!', function(match, _, bufnr, pred, metadata)
-        local node = first_node(match[pred[2]])
-        if node then
-          local value = vim.treesitter.get_node_text(node, bufnr)
-          local parts = vim.split(value, '/', {})
-          metadata['injection.language'] = ({
-            importmap = 'json',
-            module = 'javascript',
-            ['application/ecmascript'] = 'javascript',
-            ['text/ecmascript'] = 'javascript',
-          })[value] or parts[#parts]
-        end
-      end, { force = true, all = false })
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter').setup()
+      require('nvim-treesitter').install {
         ensure_installed = {
           'bash',
           'hcl',
@@ -132,28 +99,12 @@ return {
           'lua',
           'markdown',
           'markdown_inline',
-          'scss',
           'terraform',
           'tsx',
           'typescript',
           'vim',
         },
-        highlight = { enable = true, use_languagetree = true },
-        indent = { enable = true },
-        context_commentstring = { enable = true },
-        playground = {
-          enable = true,
-          disable = {},
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-          persist_queries = false, -- Whether the query persists across vim sessions
-        },
       }
-      vim.filetype.add {
-        extension = {
-          mdx = 'mdx',
-        },
-      }
-      vim.treesitter.language.register('markdown', 'mdx')
     end,
   },
   {

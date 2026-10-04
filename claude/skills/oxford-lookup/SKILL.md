@@ -28,7 +28,7 @@ Fetch and extract a word's entry from `https://www.oxfordlearnersdictionaries.co
       - example
    2. ...
    ```
-   Keep it tight. Include the source URL at the bottom. If multiple entries exist on the page, note the other suffixes (e.g. "see also `<word>_2` for the verb").
+   Keep it tight. Always include the full source URL (`https://www.oxfordlearnersdictionaries.com/definition/english/<slug>`) at the bottom so the user can click through to play the audio pronunciation on the page. If multiple entries exist on the page, note the other suffixes (e.g. "see also `<word>_2` for the verb").
 
 ## Notes
 
