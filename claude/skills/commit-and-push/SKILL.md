@@ -1,7 +1,7 @@
 ---
 name: commit-and-push
 description: Create Git commits using the Conventional Commits format after inspecting the working tree, then push to the remote. Use when the user asks to commit and push, prepare a commit message, or follow a git commit convention.
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 # Git Commit And Push
