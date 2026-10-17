@@ -45,7 +45,10 @@
     },
     "filesystem": {
       "denyRead": [
-        "~/"
+        "~/.ssh",
+        "~/.aws",
+        "~/.config/gh",
+        "~/Library/Keychains"
       ],
       "allowRead": [
         ".",
