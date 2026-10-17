@@ -2,7 +2,7 @@
 # ~/.claude/statusline.sh - Claude Code session status line (aesthetic edition)
 #
 # Three-line output:
-#   Line 1: ◆ model │ gradient progress bar percentage │ time │ rate limits
+#   Line 1:  model │ gradient progress bar percentage │ time │ rate limits
 #   Line 2: ⎇ branch* │ +added/-removed │ directory
 #   Line 3: ❯ prompt (color tied to context usage)
 #
@@ -57,7 +57,7 @@ if [[ "$USE_ASCII" == "1" ]]; then
   S_COST=""
   SEP=" | "
 elif [[ "$USE_NERDFONT" == "1" ]]; then
-  S_BRAND="◆"
+  S_BRAND=""
   S_BRANCH=" "
   S_WARN=" 󰀦"
   S_PROMPT="❯"
@@ -69,7 +69,7 @@ elif [[ "$USE_NERDFONT" == "1" ]]; then
     SEP=" │ "
   fi
 else
-  S_BRAND="◆"
+  S_BRAND=""
   S_BRANCH="⎇"
   S_WARN=" ⚠"
   S_PROMPT="❯"
