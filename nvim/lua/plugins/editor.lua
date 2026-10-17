@@ -276,4 +276,10 @@ return {
       { '<C-S-d>', '<cmd>CodeDiff<cr>', desc = 'Code diff' },
     },
   },
+  {
+    'nvzone/timerly',
+    dependencies = 'nvzone/volt',
+    cmd = 'TimerlyToggle',
+    opts = {}, -- optional
+  },
 }
