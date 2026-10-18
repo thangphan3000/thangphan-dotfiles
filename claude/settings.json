@@ -42,7 +42,10 @@
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
     "network": {
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowUnixSockets": [
+        "~/.orbstack/run/docker.sock"
+      ]
     },
     "filesystem": {
       "denyRead": [
