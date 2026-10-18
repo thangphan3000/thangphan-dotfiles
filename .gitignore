@@ -1,4 +1,5 @@
+.DS_Store
+.trash
 claude/skills/synced
 tmux/plugins
-*.log
-.DS_Store
+tmux/plugins
