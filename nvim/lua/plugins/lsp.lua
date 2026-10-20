@@ -112,7 +112,7 @@ return {
       vim.diagnostic.config {
         underline = true,
         update_in_insert = false,
-        virtual_text = false,
+        virtual_text = true,
         serverity_sort = true,
         signs = {
           text = {
