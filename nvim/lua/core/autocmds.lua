@@ -1,6 +1,15 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Auto-dismiss "Press any key to continue" prompt on startup
+autocmd('VimEnter', {
+  callback = function()
+    vim.defer_fn(function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false)
+    end, 50)
+  end,
+})
+
 -- Load Helm Treesitter highlight
 autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*/templates/*.yaml,*/templates/*.yml,*/charts/*.yaml,*/charts/*.yml',
@@ -33,8 +42,8 @@ autocmd('BufEnter', {
 })
 
 -- Disable cursorline in the CodeDiff tab
-vim.api.nvim_create_autocmd("User", {
-  pattern = "CodeDiffOpen",
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'CodeDiffOpen',
   callback = function(event)
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(event.data.tabpage)) do
       vim.wo[win].cursorline = false
