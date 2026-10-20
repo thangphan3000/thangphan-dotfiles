@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "syncClaudeAiSkills": false,
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -7,7 +8,6 @@
     ]
   },
   "model": "opus",
-  "syncClaudeAiSkills": false,
   "hooks": {
     "PreToolUse": [
       {
@@ -37,15 +37,23 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
   "sandbox": {
     "enabled": true,
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
     "network": {
-      "allowLocalBinding": true,
       "allowUnixSockets": [
         "~/.orbstack/run/docker.sock"
-      ]
+      ],
+      "allowLocalBinding": true
     },
     "filesystem": {
       "denyRead": [
@@ -89,5 +97,8 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "light-daltonized"
+  "theme": "light-daltonized",
+  "enabledPlugins": {
+    "postman@claude-plugins-official": true
+  }
 }
