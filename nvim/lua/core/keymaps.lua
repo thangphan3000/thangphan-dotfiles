@@ -1,4 +1,4 @@
-local BORDER_STYLE = "rounded"
+local BORDER_STYLE = 'rounded'
 local DIAGNOSTIC_NEXT = 1
 local DIAGNOSTIC_PREVIOUS = -1
 
@@ -32,13 +32,18 @@ km('n', '<C-k>', '<C-w>k')
 km('n', '<C-l>', '<C-w>l')
 km('n', '<Tab>', '<cmd>bnext<CR>')
 km('n', '<s-Tab>', '<cmd>bprev<CR>')
+km('n', '<C-w>', '<cmd>bdelete<CR>', 'Close current buffer')
 km('n', 'gr', '<cmd>Lspsaga lsp_finder<CR>')
 km('n', 'gd', '<cmd>Lspsaga goto_definition<CR>')
 km('n', '[b', '<cmd>Lspsaga show_buf_diagnostics<CR>')
 km('n', 'K', '<cmd>Lspsaga hover_doc<CR>')
 km('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>')
-km("n", "[w", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-km('n', '[d', function() vim.diagnostic.jump({ count = DIAGNOSTIC_PREVIOUS, float = { border = BORDER_STYLE } }) end)
-km('n', ']d', function() vim.diagnostic.jump({ count = DIAGNOSTIC_NEXT, float = { border = BORDER_STYLE } }) end)
+km('n', '[w', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
+km('n', '[d', function()
+  vim.diagnostic.jump { count = DIAGNOSTIC_PREVIOUS, float = { border = BORDER_STYLE } }
+end)
+km('n', ']d', function()
+  vim.diagnostic.jump { count = DIAGNOSTIC_NEXT, float = { border = BORDER_STYLE } }
+end)
 km('n', '<space>rn', '<cmd>Lspsaga rename<CR>')
 km('n', '<leader>d', '<Cmd>Lspsaga show_line_diagnostics<CR>')
