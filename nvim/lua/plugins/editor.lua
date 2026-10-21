@@ -248,21 +248,38 @@ return {
     opts_extend = { 'sources.default' },
   },
   {
-    'claude-tmux',
+    'cc',
     dir = vim.fn.stdpath 'config',
-    name = 'claude-tmux',
+    name = 'cc',
     lazy = true,
     keys = {
       {
-        '<C-S-c>',
+        '<C-f>',
         function()
-          require('claudecode_tmux').send_selection()
+          require('cc').toggle()
         end,
-        mode = 'v',
-        desc = 'Send selection to Claude code',
+        desc = 'Claude Code floating terminal',
+      },
+      {
+        'gP',
+        function()
+          require('cc').copy_path()
+        end,
+        desc = 'Copy current file path',
+      },
+      {
+        'gp',
+        function()
+          require('cc').copy_path_with_position()
+        end,
+        mode = { 'n', 'x' },
+        desc = 'Copy file path with range or position',
       },
     },
-    config = function() end,
+    cmd = 'Cc',
+    config = function()
+      require('cc').setup {}
+    end,
   },
   {
     'esmuellert/codediff.nvim',
