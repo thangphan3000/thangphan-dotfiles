@@ -97,8 +97,5 @@
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "light-daltonized",
-  "enabledPlugins": {
-    "postman@claude-plugins-official": true
-  }
+  "theme": "dark-ansi"
 }
