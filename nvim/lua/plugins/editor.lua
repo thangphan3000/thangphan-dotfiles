@@ -8,7 +8,9 @@ return {
       exclude = {
         filetypes = { 'help', 'Trouble', 'lazy' },
       },
-      scope = {},
+      scope = {
+        enabled = false,
+      },
     },
   },
   {
