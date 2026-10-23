@@ -56,13 +56,23 @@ return {
           preserve_window_proportions = true,
         },
         git = {
-          enable = false,
+          enable = true,
+          show_on_dirs = true,
+          show_on_open_dirs = true,
         },
         renderer = {
           root_folder_label = false,
-          highlight_git = true,
+          highlight_git = 'name',
+          highlight_opened_files = 'name',
           indent_markers = { enable = true },
           icons = {
+            git_placement = 'after',
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
             glyphs = {
               default = '󰈚',
               folder = {
@@ -72,7 +82,15 @@ return {
                 open = '',
                 symlink = '',
               },
-              git = { unmerged = '' },
+              git = {
+                unstaged = '',
+                staged = '',
+                unmerged = '',
+                renamed = '',
+                untracked = '',
+                deleted = '',
+                ignored = '',
+              },
             },
           },
         },
