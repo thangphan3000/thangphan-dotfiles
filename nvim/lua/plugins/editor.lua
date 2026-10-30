@@ -1,19 +1,5 @@
 return {
   {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      enabled = true,
-      exclude = {
-        filetypes = { 'help', 'Trouble', 'lazy' },
-      },
-      scope = {
-        enabled = false,
-      },
-    },
-  },
-  {
     'MagicDuck/grug-far.nvim',
     cmd = 'GrugFar',
     keys = {
