@@ -3,8 +3,9 @@
   "syncClaudeAiSkills": false,
   "permissions": {
     "deny": [
-      "Read(./.env)",
-      "Read(./*.db)"
+      "Read(./*.db)",
+      "Read(./*.gpg)",
+      "Read(./.env)"
     ]
   },
   "model": "opus",
@@ -57,9 +58,11 @@
     },
     "filesystem": {
       "denyRead": [
-        "~/.ssh",
         "~/.aws",
         "~/.config/gh",
+        "~/.gnupg",
+        "~/.password-store",
+        "~/.ssh",
         "~/Library/Keychains"
       ]
     },

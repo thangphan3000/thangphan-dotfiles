@@ -3,82 +3,62 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    lazy = false,
-    config = function()
-      require('bufferline').setup {}
-    end,
-  },
-  {
-    'nvim-lualine/lualine.nvim',
-    config = function()
-      require('lualine').setup {
-        options = {
-          icons_enabled = true,
-          theme = 'auto',
-          component_separators = { left = '', right = '' },
-          section_separators = { left = '', right = '' },
-          disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-          },
-          ignore_focus = {},
-          always_divide_middle = true,
-          always_show_tabline = true,
-          globalstatus = false,
-          refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-            refresh_time = 16, -- ~60fps
-            events = {
-              'WinEnter',
-              'BufEnter',
-              'BufWritePost',
-              'SessionLoadPost',
-              'FileChangedShellPost',
-              'VimResized',
-              'Filetype',
-              'CursorMoved',
-              'CursorMovedI',
-              'ModeChanged',
-            },
-          },
+    'rebelot/heirline.nvim',
+    dependencies = {
+      'Zeioth/heirline-components.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    event = 'VeryLazy',
+    opts = function()
+      local lib = require 'heirline-components.all'
+      return {
+        opts = {
+          disable_winbar_cb = function(args)
+            return not require('heirline-components.buffer').is_valid(args.buf)
+              or lib.condition.buffer_matches({
+                buftype = { 'terminal', 'prompt', 'nofile', 'help', 'quickfix' },
+                filetype = { 'NvimTree', 'neo%-tree', 'dashboard', 'Outline', 'aerial' },
+              }, args.buf)
+          end,
         },
-        sections = {
-          lualine_a = { 'mode' },
-          lualine_b = { 'branch', 'diff', 'diagnostics' },
-          lualine_c = { 'filename' },
-          lualine_x = { 'encoding', 'fileformat', 'filetype' },
-          lualine_y = { 'progress' },
-          lualine_z = { 'location' },
+        tabline = {
+          lib.component.tabline_conditional_padding(),
+          lib.component.tabline_buffers(),
+          lib.component.fill { hl = { bg = 'tabline_bg' } },
+          lib.component.tabline_tabpages(),
         },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { 'filename' },
-          lualine_x = { 'location' },
-          lualine_y = {},
-          lualine_z = {},
+        statusline = {
+          hl = { fg = 'fg', bg = 'bg' },
+          lib.component.mode(),
+          lib.component.git_branch(),
+          lib.component.file_info(),
+          lib.component.git_diff(),
+          lib.component.diagnostics(),
+          lib.component.fill(),
+          lib.component.cmd_info(),
+          lib.component.fill(),
+          lib.component.lsp(),
+          lib.component.virtual_env(),
+          lib.component.nav(),
+          lib.component.mode { surround = { separator = 'right' } },
         },
-        tabline = {},
-        winbar = {},
-        inactive_winbar = {},
-        extensions = {},
       }
     end,
+    config = function(_, opts)
+      local heirline = require 'heirline'
+      local lib = require 'heirline-components.all'
+      lib.init.subscribe_to_events()
+      heirline.load_colors(lib.hl.get_colors())
+      heirline.setup(opts)
+    end,
   },
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
+    'loctvl842/monokai-pro.nvim',
+    lazy = false,
     priority = 1000,
     config = function()
-      require('catppuccin').setup {
-        transparent_background = false,
-      }
-      vim.cmd.colorscheme 'catppuccin-mocha'
+      require('monokai-pro').setup()
+      vim.cmd.colorscheme 'monokai-pro-octagon'
     end,
   },
   {

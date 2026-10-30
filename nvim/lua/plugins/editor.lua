@@ -56,7 +56,7 @@ return {
           preserve_window_proportions = true,
         },
         git = {
-          enable = true,
+          enable = false,
           show_on_dirs = true,
           show_on_open_dirs = true,
         },
@@ -206,7 +206,7 @@ return {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
       vim.keymap.set('n', '<C-g>', builtin.live_grep, { desc = 'Telescope live grep' })
-      vim.keymap.set('n', '<C-s>', builtin.grep_string, { desc = 'Telescope live grep' })
+      vim.keymap.set('n', '<C-j>', builtin.git_status, { desc = 'Telescope git status' })
     end,
   },
   {
