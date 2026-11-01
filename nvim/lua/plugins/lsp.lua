@@ -14,8 +14,9 @@ return {
         'williamboman/mason.nvim',
         config = function(_, opts)
           require('mason').setup(opts)
-          require('mason-lspconfig').setup {
-            ensure_installed = {
+          local minimal = vim.env.IS_USED_LSP_MINIMAL == 'true'
+          local ensure_installed = minimal and { 'bashls', 'jsonls', 'pyright', 'terraformls' }
+            or {
               'bashls',
               'biome',
               'gopls',
@@ -25,7 +26,9 @@ return {
               'stylua',
               'terraformls',
               'vtsls',
-            },
+            }
+          require('mason-lspconfig').setup {
+            ensure_installed = ensure_installed,
           }
         end,
       },
