@@ -18,7 +18,6 @@ return {
             ensure_installed = {
               'bashls',
               'biome',
-              'clangd',
               'gopls',
               'jsonls',
               'lua_ls',
@@ -90,7 +89,6 @@ return {
       vim.lsp.enable 'lua_ls'
       vim.lsp.enable 'pyright'
       vim.lsp.enable 'bashls'
-      vim.lsp.enable 'clangd'
       vim.lsp.enable 'gopls'
       vim.lsp.enable 'vtsls'
       vim.lsp.enable 'terraform'
