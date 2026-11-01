@@ -3,7 +3,7 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     config = function()
       require('mason-tool-installer').setup {
-        ensure_installed = { 'cspell', 'stylua' },
+        ensure_installed = { 'cspell' },
       }
     end,
   },
@@ -14,8 +14,8 @@ return {
         'williamboman/mason.nvim',
         config = function(_, opts)
           require('mason').setup(opts)
-          local minimal = vim.env.IS_USED_LSP_MINIMAL == 'true'
-          local ensure_installed = minimal and { 'bashls', 'jsonls', 'pyright', 'terraformls' }
+          local minimal = vim.env.NVIM_LSP_MINIMAL == '1'
+          local ensure_installed = minimal and { 'bashls', 'jsonls', 'pyright', 'terraformls', 'vtsls' }
             or {
               'bashls',
               'biome',
