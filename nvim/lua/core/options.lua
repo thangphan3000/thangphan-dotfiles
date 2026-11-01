@@ -9,6 +9,17 @@ opt.mouse = 'a'
 opt.laststatus = 3
 opt.showtabline = 2
 opt.clipboard = 'unnamedplus'
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy '+',
+    ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste '+',
+    ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+  },
+}
 opt.termguicolors = true
 opt.cursorline = true
 opt.swapfile = false
