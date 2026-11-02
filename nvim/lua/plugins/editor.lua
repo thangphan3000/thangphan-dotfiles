@@ -306,6 +306,9 @@ return {
       terminals = {
         { name = 'Terminal', cmd = 'nix develop' },
       },
+      border = false,
+      size = { h = 60, w = 70 },
+      mappings = { sidebar = nil, term = nil },
     },
     cmd = 'FloatermToggle',
     keys = {
