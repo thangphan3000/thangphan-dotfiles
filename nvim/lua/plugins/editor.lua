@@ -299,4 +299,17 @@ return {
       { '<C-S-d>', '<cmd>CodeDiff<cr>', desc = 'Code diff' },
     },
   },
+  {
+    'nvzone/floaterm',
+    dependencies = 'nvzone/volt',
+    opts = {
+      terminals = {
+        { name = 'Terminal', cmd = 'nix develop' },
+      },
+    },
+    cmd = 'FloatermToggle',
+    keys = {
+      { '<C-\\>', '<cmd>FloatermToggle<cr>', mode = { 'n', 't' }, desc = 'Toggle floating terminal' },
+    },
+  },
 }
