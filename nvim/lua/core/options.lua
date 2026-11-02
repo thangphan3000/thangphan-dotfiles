@@ -28,7 +28,7 @@ opt.undodir = os.getenv 'HOME' .. '/.local/state/nvim/undo'
 opt.shell = 'zsh'
 opt.wrap = true
 opt.scrolloff = 8
-opt.relativenumber = true
+opt.relativenumber = false
 opt.ignorecase = true
 opt.background = 'dark'
 opt.fixendofline = false
@@ -64,7 +64,7 @@ opt.backspace = { 'start', 'eol', 'indent' }
 -----------------------------------------------------------
 opt.hidden = true -- Enable background buffers
 opt.history = 100 -- Remember N lines in history
-opt.lazyredraw = true -- Faster scrolling
+opt.lazyredraw = false -- Faster scrolling
 opt.synmaxcol = 240 -- Max column for syntax highlight
 opt.updatetime = 250 -- ms to wait for trigger an event
 
